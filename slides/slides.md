@@ -190,3 +190,6 @@ it('sum detailed test', () => {
 # Forms
 --- 
 # Thank you
+
+- Source code and slides
+- [github.com/SamProf/angular-testing-components-app](https://github.com/SamProf/angular-testing-components-app)
