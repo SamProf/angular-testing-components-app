@@ -6,3 +6,15 @@
   <!--  <span>{{user.family}}</span>-->
   <button class="login-button" (click)="logoutClickButton()">Logout</button>
 </div>
+
+<form (ngSubmit)="loginSubmit()"
+      [formGroup]="form"
+      *ngIf="!user">
+  <label>Email</label>
+  <input type="email"
+         formControlName="email">
+  <label>Password</label>
+  <input type="password"
+         formControlName="password">
+  <button type="submit">Login</button>
+</form>

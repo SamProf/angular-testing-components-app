@@ -5,12 +5,15 @@ import {By} from "@angular/platform-browser";
 import {FirstService} from "../../services/first.service";
 import createSpyObj = jasmine.createSpyObj;
 import {initializeAutocomplete} from "@angular/cli/src/utilities/completion";
+import {ReactiveFormsModule} from "@angular/forms";
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let fakeFirstService = createSpyObj('FirstService', ['init']);
-  fakeFirstService.init.and.callFake(()=>{console.log('Fake init call')});
+  fakeFirstService.init.and.callFake(() => {
+    console.log('Fake init call')
+  });
 
   beforeEach(async () => {
 
@@ -23,7 +26,10 @@ describe('LoginComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [LoginComponent],
       providers: [
-        {provide: FirstService, useValue: fakeFirstService}
+        {provide: FirstService, useValue: fakeFirstService},
+      ],
+      imports: [
+        ReactiveFormsModule
       ]
     })
       .compileComponents();
@@ -116,7 +122,26 @@ describe('LoginComponent', () => {
   });
 
 
-  it('first dependency servies should be called at start', ()=>{
+  it('first dependency servies should be called at start', () => {
     expect(fakeFirstService.init).toHaveBeenCalledTimes(1);
+  });
+
+
+  it('login form is invalid when empty', () => {
+    expect(component.form.valid).toBeFalsy();
+  });
+
+  it('login form is valid', () => {
+    component.form.controls['email'].setValue('vladimir.samoilenko@cgm.com');
+    component.form.controls['password'].setValue('testtesttesttest');
+    expect(component.form.valid).toBeTruthy();
+  });
+
+  it('login form is valid sumitted', () => {
+    let event = spyOn(component.loginEvent, 'emit').and.callThrough();
+    component.form.controls['email'].setValue('vladimir.samoilenko@cgm.com');
+    component.form.controls['password'].setValue('testtesttesttest');
+    component.loginSubmit();
+    expect(event).toHaveBeenCalledWith({email: "vladimir.samoilenko@cgm.com", password: 'testtesttesttest'});
   });
 });
