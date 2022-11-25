@@ -1,0 +1,8 @@
+<p>login works!</p>
+
+<div *ngIf="user" class="user">
+  <span class="hello" [class.error]="!user.name || !user.family">Hello, {{getFullName()}} </span>
+  <!--  <span>{{user.name}}</span>-->
+  <!--  <span>{{user.family}}</span>-->
+  <button class="login-button" (click)="logoutClickButton()">Logout</button>
+</div>
