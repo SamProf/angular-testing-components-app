@@ -8,12 +8,12 @@
 
 #### Vladimir Samoilenko
 
-- Software Architect MetaKIS
+- Software Architect KMS KIS
 - <vladimir.samoilenko@cgm.com>
 - [github.com/SamProf](https://github.com/SamProf)
 <div style="text-align: end">
 
-![img.png](img.png) ![img_1.png](img_1.png)
+![img.png](img.png) ![img_1.png](img_kms.png)
 
 </div>
 
@@ -188,7 +188,9 @@ it('sum detailed test', () => {
 
 --- 
 # Forms
---- 
+- Using standard FormBuilder to do form testing
+
+---
 # Thank you
 
 - Source code and slides
